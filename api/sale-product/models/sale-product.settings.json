@@ -1,0 +1,59 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sale_products",
+  "info": {
+    "name": "SaleProduct",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "discount": {
+      "type": "integer"
+    },
+    "percentageDiscount": {
+      "type": "boolean",
+      "default": false
+    },
+    "product": {
+      "model": "product"
+    },
+    "countSizes": {
+      "type": "integer",
+      "default": 0
+    },
+    "sizes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.size"
+    },
+    "users_permissions_users": {
+      "via": "sale_product",
+      "plugin": "users-permissions",
+      "collection": "user"
+    },
+    "sklad": {
+      "model": "sklad",
+      "via": "sale_products"
+    },
+    "payCard": {
+      "type": "boolean"
+    },
+    "payCash": {
+      "type": "boolean"
+    },
+    "cashSum": {
+      "type": "integer"
+    },
+    "cardSum": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "string"
+    }
+  }
+}

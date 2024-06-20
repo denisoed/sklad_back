@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "costs",
+  "info": {
+    "name": "Costs",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "sum": {
+      "type": "integer"
+    },
+    "description": {
+      "type": "string"
+    },
+    "users_permissions_user": {
+      "plugin": "users-permissions",
+      "model": "user"
+    },
+    "sklad": {
+      "via": "costs",
+      "model": "sklad"
+    }
+  }
+}

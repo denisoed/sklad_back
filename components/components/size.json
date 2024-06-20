@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_components_sizes",
+  "info": {
+    "name": "size",
+    "icon": "ad",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    }
+  }
+}

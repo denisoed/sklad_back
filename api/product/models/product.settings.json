@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "name": "Product",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "origPrice": {
+      "type": "decimal"
+    },
+    "newPrice": {
+      "type": "decimal"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false,
+      "pluginOptions": {}
+    },
+    "color": {
+      "type": "string"
+    },
+    "category": {
+      "via": "products",
+      "model": "categories"
+    },
+    "sklad": {
+      "via": "products",
+      "model": "sklad"
+    },
+    "activities": {
+      "via": "product",
+      "collection": "activity"
+    },
+    "discountPrice": {
+      "type": "decimal"
+    },
+    "discountDays": {
+      "type": "json"
+    },
+    "withDiscount": {
+      "type": "boolean",
+      "default": false
+    },
+    "histories": {
+      "via": "product",
+      "collection": "history"
+    },
+    "countSizes": {
+      "type": "integer",
+      "default": 0,
+      "min": 0
+    },
+    "useNumberOfSizes": {
+      "type": "boolean"
+    },
+    "sizes": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.size"
+    },
+    "typeSize": {
+      "model": "sizes",
+      "via": "products"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_components_permissions",
+  "info": {
+    "name": "permission",
+    "icon": "key",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sklad": {
+      "model": "sklad"
+    },
+    "list": {
+      "type": "json"
+    }
+  }
+}

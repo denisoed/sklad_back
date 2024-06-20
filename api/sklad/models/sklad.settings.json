@@ -1,0 +1,73 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sklads",
+  "info": {
+    "name": "Sklad",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "users": {
+      "via": "sklads",
+      "plugin": "users-permissions",
+      "collection": "user",
+      "dominant": true
+    },
+    "products": {
+      "via": "sklad",
+      "collection": "product"
+    },
+    "histories": {
+      "via": "sklad",
+      "collection": "history"
+    },
+    "sizes": {
+      "type": "json"
+    },
+    "costs": {
+      "via": "sklad",
+      "collection": "costs"
+    },
+    "color": {
+      "type": "string"
+    },
+    "minSizes": {
+      "type": "integer"
+    },
+    "useMinSizes": {
+      "type": "boolean",
+      "default": false
+    },
+    "print_template": {
+      "via": "sklads",
+      "model": "print-templates"
+    },
+    "goal": {
+      "type": "integer",
+      "default": 1000000
+    },
+    "useNumberOfSizes": {
+      "type": "boolean",
+      "default": false
+    },
+    "order": {
+      "type": "integer"
+    },
+    "sale_products": {
+      "via": "sklad",
+      "collection": "sale-product"
+    },
+    "categories": {
+      "via": "sklad",
+      "collection": "categories"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "sklad-back",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "NODE_ENV=production strapi start",
+    "build": "strapi build",
+    "build:production": "NODE_ENV=production strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "knex": "0.21.18",
+    "pg": "^8.7.3",
+    "sqlite3": "^5.0.8",
+    "strapi": "3.6.8",
+    "strapi-admin": "3.6.8",
+    "strapi-connector-bookshelf": "3.6.8",
+    "strapi-plugin-content-manager": "3.6.8",
+    "strapi-plugin-content-type-builder": "3.6.8",
+    "strapi-plugin-documentation": "3.6.8",
+    "strapi-plugin-email": "3.6.8",
+    "strapi-plugin-graphql": "^3.6.8",
+    "strapi-plugin-i18n": "3.6.8",
+    "strapi-plugin-upload": "3.6.8",
+    "strapi-plugin-users-permissions": "3.6.8",
+    "strapi-provider-email-nodemailer": "^3.6.11",
+    "strapi-provider-upload-aws-s3": "^3.6.10",
+    "strapi-utils": "3.6.8"
+  },
+  "author": {
+    "name": "Denisoed"
+  },
+  "strapi": {
+    "uuid": "831c21ed-e86f-4634-af17-3e68c323707e"
+  },
+  "engines": {
+    "node": "^14.17.3",
+    "npm": "^6.0.0"
+  },
+  "license": "MIT"
+}

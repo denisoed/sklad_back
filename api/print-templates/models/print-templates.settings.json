@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "print_templates",
+  "info": {
+    "name": "Print Templates",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "type": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sklads": {
+      "via": "print_template",
+      "collection": "sklad"
+    },
+    "width": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    }
+  }
+}

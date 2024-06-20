@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "activities",
+  "info": {
+    "name": "Activity",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "origPrice": {
+      "type": "integer"
+    },
+    "newPrice": {
+      "type": "integer"
+    },
+    "discount": {
+      "type": "integer"
+    },
+    "percentageDiscount": {
+      "type": "boolean",
+      "default": false
+    },
+    "sklad": {
+      "model": "sklad"
+    },
+    "size": {
+      "type": "string"
+    },
+    "product": {
+      "via": "activities",
+      "model": "product"
+    },
+    "countSizes": {
+      "type": "integer"
+    }
+  }
+}
