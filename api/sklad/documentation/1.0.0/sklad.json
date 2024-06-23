@@ -603,6 +603,9 @@
                 "telegramId": {
                   "type": "integer"
                 },
+                "sklad": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -918,6 +921,93 @@
               }
             }
           },
+          "owner": {
+            "required": [
+              "id",
+              "username",
+              "email"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "username": {
+                "type": "string"
+              },
+              "email": {
+                "type": "string"
+              },
+              "provider": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              },
+              "resetPasswordToken": {
+                "type": "string"
+              },
+              "confirmationToken": {
+                "type": "string"
+              },
+              "confirmed": {
+                "type": "boolean"
+              },
+              "blocked": {
+                "type": "boolean"
+              },
+              "role": {
+                "type": "string"
+              },
+              "fullname": {
+                "type": "string"
+              },
+              "bio": {
+                "type": "string"
+              },
+              "avatar": {
+                "type": "string"
+              },
+              "tokenVersion": {
+                "type": "integer"
+              },
+              "expiredAt": {
+                "type": "string"
+              },
+              "sklads": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "permissions": {
+                "type": "component"
+              },
+              "onboarded": {
+                "type": "boolean"
+              },
+              "sizes": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sale_product": {
+                "type": "string"
+              },
+              "telegramId": {
+                "type": "integer"
+              },
+              "sklad": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -991,6 +1081,9 @@
             "items": {
               "type": "string"
             }
+          },
+          "owner": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

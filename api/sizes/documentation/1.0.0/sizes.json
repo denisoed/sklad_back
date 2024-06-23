@@ -623,6 +623,9 @@
                 "telegramId": {
                   "type": "integer"
                 },
+                "sklad": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },

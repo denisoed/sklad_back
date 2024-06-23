@@ -706,6 +706,9 @@
                   "type": "string"
                 }
               },
+              "owner": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

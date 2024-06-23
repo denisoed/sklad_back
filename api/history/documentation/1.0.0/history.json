@@ -601,6 +601,9 @@
               "telegramId": {
                 "type": "integer"
               },
+              "sklad": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -679,6 +682,9 @@
                 "items": {
                   "type": "string"
                 }
+              },
+              "owner": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"

@@ -1401,6 +1401,9 @@
                     "type": "string"
                   }
                 },
+                "owner": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -1494,6 +1497,9 @@
                       "items": {
                         "type": "string"
                       }
+                    },
+                    "owner": {
+                      "type": "string"
                     },
                     "published_at": {
                       "type": "string"
@@ -1616,6 +1622,91 @@
           },
           "telegramId": {
             "type": "integer"
+          },
+          "sklad": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "users": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "products": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "histories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "sizes": {
+                "type": "object"
+              },
+              "costs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "color": {
+                "type": "string"
+              },
+              "minSizes": {
+                "type": "integer"
+              },
+              "useMinSizes": {
+                "type": "boolean"
+              },
+              "print_template": {
+                "type": "string"
+              },
+              "goal": {
+                "type": "integer"
+              },
+              "useNumberOfSizes": {
+                "type": "boolean"
+              },
+              "order": {
+                "type": "integer"
+              },
+              "sale_products": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "categories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "owner": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
           }
         }
       },
@@ -1760,6 +1851,9 @@
                         "type": "string"
                       }
                     },
+                    "owner": {
+                      "type": "string"
+                    },
                     "published_at": {
                       "type": "string"
                     },
@@ -1792,6 +1886,9 @@
           },
           "telegramId": {
             "type": "integer"
+          },
+          "sklad": {
+            "type": "string"
           },
           "created_by": {
             "type": "string"

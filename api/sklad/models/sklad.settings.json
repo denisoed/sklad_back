@@ -68,6 +68,11 @@
     "categories": {
       "via": "sklad",
       "collection": "categories"
+    },
+    "owner": {
+      "plugin": "users-permissions",
+      "model": "user",
+      "via": "sklad"
     }
   }
 }

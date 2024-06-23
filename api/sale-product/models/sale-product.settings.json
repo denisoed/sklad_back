@@ -37,8 +37,8 @@
       "collection": "user"
     },
     "sklad": {
-      "model": "sklad",
-      "via": "sale_products"
+      "via": "sale_products",
+      "model": "sklad"
     },
     "payCard": {
       "type": "boolean"

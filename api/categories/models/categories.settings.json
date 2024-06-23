@@ -20,8 +20,8 @@
       "collection": "product"
     },
     "sklad": {
-      "model": "sklad",
-      "via": "categories"
+      "via": "categories",
+      "model": "sklad"
     },
     "color": {
       "type": "string"

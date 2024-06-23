@@ -554,12 +554,6 @@
                 "name": {
                   "type": "string"
                 },
-                "categories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "users": {
                   "type": "array",
                   "items": {
@@ -613,6 +607,15 @@
                   "items": {
                     "type": "string"
                   }
+                },
+                "categories": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "owner": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"

@@ -109,6 +109,10 @@
     "telegramId": {
       "type": "biginteger",
       "unique": true
+    },
+    "sklad": {
+      "via": "owner",
+      "model": "sklad"
     }
   }
 }
