@@ -8,6 +8,9 @@
 
 /* eslint-disable no-useless-escape */
 const crypto = require("crypto");
+const sha256 = require('crypto-js/sha256');
+const hmacSHA256 = require('crypto-js/hmac-sha256');
+const Hex = require('crypto-js/enc-hex');
 const _ = require("lodash");
 const grant = require("grant-koa");
 const { sanitizeEntity } = require("strapi-utils");
@@ -60,6 +63,30 @@ Date.prototype.addDays = function(days) {
 
 const queryStringToObject = url =>
   Object.fromEntries([...new URLSearchParams(url)]);
+
+function verifyAuthorization(params) {
+  const bot_key = '';
+
+  if ((new Date() - new Date(params.auth_date * 1000)) > 86400000) { // milisecond
+    throw new ValidationError('Authorization data is outdated');
+  }
+
+  const verificationParams = { ...params };
+  delete verificationParams.hash;
+
+  const message = Object.keys(verificationParams)
+    .map(key => `${key}=${verificationParams[key]}`)
+    .sort()
+    .join('\n');
+  const secretKey = sha256(bot_key);
+  const hash = Hex.stringify(hmacSHA256(message, secretKey));
+
+  if (hash !== params.hash) {
+    return false;
+  }
+
+  return true;
+}
 
 module.exports = {
   async auth(ctx) {
@@ -843,9 +870,9 @@ module.exports = {
       );
     }
 
-    const initData = queryStringToObject(params?.initData || '');
+    const initData = JSON.parse(params?.initData);
 
-    if (!initData.user) {
+    if (!verifyAuthorization(initData)) {
       return ctx.badRequest(
         null,
         formatError({
@@ -855,7 +882,7 @@ module.exports = {
       );
     }
 
-    const telegramId = JSON.parse(initData.user).id
+    const telegramId = initData.id
 
     // fetch user based on subject
     const user = await strapi
@@ -870,7 +897,7 @@ module.exports = {
     params.role = role.id;
     params.telegramId = telegramId;
     params.username = telegramId;
-    params.fullname = createUsername(JSON.parse(initData.user));
+    params.fullname = createUsername(initData);
     params.email = '';
     params.confirmed = true;
 

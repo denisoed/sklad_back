@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "crypto": "^1.0.1",
+    "crypto-js": "^4.2.0",
     "knex": "0.21.18",
     "pg": "^8.7.3",
     "sqlite3": "^5.0.8",
