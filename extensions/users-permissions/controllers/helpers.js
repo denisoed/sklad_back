@@ -1,7 +1,4 @@
 const crypto = require("crypto");
-const sha256 = require("crypto-js/sha256");
-const hmacSHA256 = require("crypto-js/hmac-sha256");
-const Hex = require("crypto-js/enc-hex");
 
 function validateInitDataUnsafe(initDataUnsafe) {
   const initData = { ...initDataUnsafe };
@@ -27,13 +24,18 @@ function validateWebTgAuthData(data) {
   const verificationData = { ...data };
   delete verificationData.hash;
 
-  const message = Object.keys(verificationData)
+  const dataToCheck = Object.keys(verificationData)
     .map(key => `${key}=${verificationData[key]}`)
     .sort()
     .join("\n");
-  const secretKey = sha256(process.env.TELEGRAM_BOT_KEY);
-  const hash = Hex.stringify(hmacSHA256(message, secretKey));
-  return hash === data.hash;
+  
+  const secret = crypto.createHash('sha256')
+    .update(process.env.TELEGRAM_BOT_KEY)
+    .digest()
+  const hmac = crypto.createHmac("sha256", secret)
+    .update(dataToCheck)
+    .digest("hex");
+  return hmac === data.hash;
 }
 
 module.exports = {
