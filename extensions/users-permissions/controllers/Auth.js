@@ -11,6 +11,7 @@ const crypto = require("crypto");
 const _ = require("lodash");
 const grant = require("grant-koa");
 const { sanitizeEntity } = require("strapi-utils");
+const { validateInitDataUnsafe, validateWebTgAuthData } = require("./helpers");
 
 const emailRegExp =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -28,6 +29,11 @@ const generateRefreshToken = (user) => {
       expiresIn: "60d",
     }
   );
+}
+
+function getTgUser(data, mode) {
+  if (mode === "tg") return data.user;
+  return data;
 }
 
 function createUsername(user) {
@@ -58,8 +64,14 @@ Date.prototype.addDays = function(days) {
   return date;
 }
 
-const queryStringToObject = url =>
-  Object.fromEntries([...new URLSearchParams(url)]);
+function verifyWebTgAuthData(data, mode) {
+  if ((new Date() - new Date(data.auth_date * 1000)) > 86400000) { // milisecond
+    return false;
+  }
+  if (mode === "tg") return validateInitDataUnsafe(data);
+  if (mode === "web") return validateWebTgAuthData(data);
+  return false;
+}
 
 module.exports = {
   async auth(ctx) {
@@ -785,10 +797,10 @@ module.exports = {
   async me(ctx) {
     const user = ctx.state.user;
     if (!user) {
-      return ctx.badRequest(null, [{ messages: [{ id: 'No authorization header was found' }] }]);
+      return ctx.badRequest(null, [{ messages: [{ id: "No authorization header was found" }] }]);
     }
 
-    const data = await strapi.query('user', 'users-permissions').findOne({ id: user.id });  
+    const data = await strapi.query("user", "users-permissions").findOne({ id: user.id });  
 
     if(!data){
       return ctx.notFound();
@@ -842,10 +854,10 @@ module.exports = {
         })
       );
     }
+    
+    const initData = JSON.parse(params?.initData);
 
-    const initData = queryStringToObject(params?.initData || '');
-
-    if (!initData.user) {
+    if (!verifyWebTgAuthData(initData, params.mode)) {
       return ctx.badRequest(
         null,
         formatError({
@@ -855,12 +867,12 @@ module.exports = {
       );
     }
 
-    const telegramId = JSON.parse(initData.user).id
+    const tgUser = getTgUser(initData, params.mode);
 
     // fetch user based on subject
     const user = await strapi
       .query("user", "users-permissions")
-      .findOne({ telegramId: telegramId });
+      .findOne({ telegramId: tgUser.id });
 
     if (user) {
       const data = generateNewJWT(user);
@@ -868,10 +880,10 @@ module.exports = {
     }
 
     params.role = role.id;
-    params.telegramId = telegramId;
-    params.username = telegramId;
-    params.fullname = createUsername(JSON.parse(initData.user));
-    params.email = '';
+    params.telegramId = tgUser.id;
+    params.username = tgUser.id;
+    params.fullname = createUsername(tgUser);
+    params.email = "";
     params.confirmed = true;
 
     try {

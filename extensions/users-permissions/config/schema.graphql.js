@@ -36,7 +36,7 @@ module.exports = {
     auth(identifier: String!, password: String!): UsersPermissionsAuthPayload!
     refreshToken(token: String!, renew: Boolean): UsersPermissionsRefreshTokenPayload!
     revokeToken(token: String!): UsersPermissionsRevokeTokenPayload!
-    telegramAuth(initData: String!): UsersPermissionsAuthPayload!
+    telegramAuth(initData: String!, mode: String!): UsersPermissionsAuthPayload!
   `,
   resolver: {
     Mutation: {
