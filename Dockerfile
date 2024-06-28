@@ -8,7 +8,7 @@ WORKDIR ${APP_ROOT}
 COPY ./package.json ${APP_ROOT}
 COPY ./package-lock.json ${APP_ROOT}
 
-RUN npm ci
+RUN npm i
 
 COPY . ${APP_ROOT}
 
