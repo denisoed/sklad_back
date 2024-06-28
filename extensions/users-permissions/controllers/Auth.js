@@ -8,12 +8,10 @@
 
 /* eslint-disable no-useless-escape */
 const crypto = require("crypto");
-const sha256 = require("crypto-js/sha256");
-const hmacSHA256 = require("crypto-js/hmac-sha256");
-const Hex = require("crypto-js/enc-hex");
 const _ = require("lodash");
 const grant = require("grant-koa");
 const { sanitizeEntity } = require("strapi-utils");
+const { validateInitDataUnsafe, validateWebTgAuthData } = require("./helpers");
 
 const emailRegExp =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -31,6 +29,11 @@ const generateRefreshToken = (user) => {
       expiresIn: "60d",
     }
   );
+}
+
+function getTgUser(data, mode) {
+  if (mode === "tg") return data.user;
+  return data;
 }
 
 function createUsername(user) {
@@ -61,22 +64,13 @@ Date.prototype.addDays = function(days) {
   return date;
 }
 
-function verifyAuthorization(params) {
-  if ((new Date() - new Date(params.auth_date * 1000)) > 86400000) { // milisecond
-    throw new ValidationError("Authorization data is outdated");
+function verifyWebTgAuthData(data, mode) {
+  if ((new Date() - new Date(data.auth_date * 1000)) > 86400000) { // milisecond
+    return false;
   }
-
-  const verificationParams = { ...params };
-  delete verificationParams.hash;
-
-  const message = Object.keys(verificationParams)
-    .map(key => `${key}=${verificationParams[key]}`)
-    .sort()
-    .join("\n");
-  const secretKey = sha256(process.env.TELEGRAM_BOT_KEY);
-  const hash = Hex.stringify(hmacSHA256(message, secretKey));
-
-  return hash === params.hash;
+  if (mode === "tg") return validateInitDataUnsafe(data);
+  if (mode === "web") return validateWebTgAuthData(data);
+  return false;
 }
 
 module.exports = {
@@ -860,10 +854,10 @@ module.exports = {
         })
       );
     }
-
+    
     const initData = JSON.parse(params?.initData);
 
-    if (!verifyAuthorization(initData)) {
+    if (!verifyWebTgAuthData(initData, params.mode)) {
       return ctx.badRequest(
         null,
         formatError({
@@ -873,10 +867,12 @@ module.exports = {
       );
     }
 
+    const tgUser = getTgUser(initData, params.mode);
+
     // fetch user based on subject
     const user = await strapi
       .query("user", "users-permissions")
-      .findOne({ telegramId: initData.id });
+      .findOne({ telegramId: tgUser.id });
 
     if (user) {
       const data = generateNewJWT(user);
@@ -884,9 +880,9 @@ module.exports = {
     }
 
     params.role = role.id;
-    params.telegramId = initData.id;
-    params.username = initData.id;
-    params.fullname = createUsername(initData);
+    params.telegramId = tgUser.id;
+    params.username = tgUser.id;
+    params.fullname = createUsername(tgUser);
     params.email = "";
     params.confirmed = true;
 
