@@ -20,7 +20,6 @@ function validateInitDataUnsafe(initDataUnsafe) {
     .update(process.env.TELEGRAM_BOT_KEY)
     .digest();
   const _hash = crypto.createHmac("sha256", secretKey).update(dataToCheck).digest("hex");
-  console.log(hash === _hash);
   return hash === _hash;
 }
 
