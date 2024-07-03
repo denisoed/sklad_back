@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "crypto": "^1.0.1",
-    "graphql": "^15.5.0",
     "knex": "0.21.18",
     "pg": "^8.7.3",
     "sqlite3": "^5.0.8",
