@@ -20,7 +20,13 @@ module.exports = {
     delete filteredQueries['dates'];
     delete filteredQueries['_limit'];
 
-    const histories = await strapi.query(HISTORY).find({ _limit: -1, sklad: skladsId, ...filteredQueries });
+    const histories = await strapi.query(HISTORY)
+      .find({
+        _limit: queries._limit,
+        _start: queries._start,
+        sklad: skladsId,
+        ...filteredQueries
+      });
     if (!queries?.dates?.length) return histories;
     const filteredHistories = histories.filter(p => queries.dates.some(d => JSON.stringify(p.created_at).includes(d)));
     return filteredHistories;

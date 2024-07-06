@@ -1,6 +1,6 @@
 module.exports = {
   query: `
-    listHistories(where: JSON, sort: String): [History]
+    listHistories(where: JSON, sort: String, limit: Int, start: Int): [History]
   `,
   resolver: {
     Query: {
