@@ -11,6 +11,7 @@ module.exports = {
   `,
   query: `
     statisticFinance(where: JSON!): StatisticFinance
+    skladsProducts(q: String!, _limit: Int, _sort: String): [Sklad]
   `,
   mutation: `
     removeSklad(skladId: ID!): Boolean
@@ -23,6 +24,11 @@ module.exports = {
         resolverOf: 'application::sklad.sklad.find',
         resolver: 'application::sklad.sklad.statisticFinance',
       },
+      skladsProducts: {
+        description: 'Search sklad products',
+        resolverOf: 'application::sklad.sklad.find',
+        resolver: 'application::sklad.sklad.skladsProducts',
+      },
     },
     Mutation: {
       removeSklad: {
@@ -34,6 +40,14 @@ module.exports = {
         description: 'Bulk update sklads',
         resolverOf: 'application::sklad.sklad.update',
         resolver: 'application::sklad.sklad.bulkUpdateSklads'
+      }
+    },
+    Sklad: {
+      products: (obj, options) => {
+        if (obj.products && Array.isArray(obj.products)) {
+          return obj.products;
+        }
+        return strapi.query('product').find({ sklad: obj.id, ...options });
       }
     }
   }

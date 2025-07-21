@@ -111,4 +111,48 @@ module.exports = {
       };
     }
   },
+  async skladsProducts(ctx) {
+    const { _q } = ctx.query;
+    if (!_q || typeof _q !== 'string') {
+      return [];
+    }
+
+    const terms = _q
+      .trim()
+      .split(/\s+/)
+      .map(t => t.toLowerCase());
+
+    const fields = ['name', 'color'];
+
+    try {
+      const sklads = await strapi.query('sklad').find({
+        _limit: ctx.query._limit || -1,
+        _sort: ctx.query._sort || 'name:ASC'
+      });
+      const result = [];
+      for (const sklad of sklads) {
+        // Получаем все продукты склада
+        const products = await strapi.query('product').find({
+          sklad: sklad.id,
+          _limit: -1
+        });
+        const filteredProducts = products.filter(product => {
+          return fields.some(field => {
+            const value = (product[field] || '').toLowerCase();
+            return terms.some(term => value.includes(term));
+          });
+        });
+        if (filteredProducts.length > 0) {
+          result.push({
+            ...sklad,
+            products: filteredProducts
+          });
+        }
+      }
+      return result;
+    } catch (err) {
+      console.error(err);
+      return [];
+    }
+  }
 };

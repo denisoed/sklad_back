@@ -10,6 +10,14 @@
     },
     {
       "method": "GET",
+      "path": "/sklads/sklads-products",
+      "handler": "sklad.skladsProducts",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
       "path": "/sklads/count",
       "handler": "sklad.count",
       "config": {
