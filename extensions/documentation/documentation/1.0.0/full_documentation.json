@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/21/2025 8:06:06 PM"
+    "x-generation-date": "07/22/2025 9:01:25 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -5435,7 +5435,7 @@
         }
       }
     },
-    "/sklads/sklads-products": {
+    "/sklads/search": {
       "get": {
         "deprecated": false,
         "description": "",

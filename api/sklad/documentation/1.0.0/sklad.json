@@ -254,7 +254,7 @@
         }
       }
     },
-    "/sklads/sklads-products": {
+    "/sklads/search": {
       "get": {
         "deprecated": false,
         "description": "",

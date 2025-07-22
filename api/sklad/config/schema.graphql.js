@@ -11,7 +11,7 @@ module.exports = {
   `,
   query: `
     statisticFinance(where: JSON!): StatisticFinance
-    skladsProducts(q: String!, _limit: Int, _sort: String): [Sklad]
+    search(q: String, _limit: Int, _sort: String): [Sklad]
   `,
   mutation: `
     removeSklad(skladId: ID!): Boolean
@@ -24,10 +24,10 @@ module.exports = {
         resolverOf: 'application::sklad.sklad.find',
         resolver: 'application::sklad.sklad.statisticFinance',
       },
-      skladsProducts: {
+      search: {
         description: 'Search sklad products',
         resolverOf: 'application::sklad.sklad.find',
-        resolver: 'application::sklad.sklad.skladsProducts',
+        resolver: 'application::sklad.sklad.search',
       },
     },
     Mutation: {

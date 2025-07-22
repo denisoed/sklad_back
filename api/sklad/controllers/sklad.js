@@ -17,6 +17,8 @@ const ACTIVITY = 'activity'
 const PRODUCT = 'product'
 const SKLAD = 'sklad'
 
+const SEARCH_FIELDS = ['name', 'color'];
+
 const stemmer = newStemmer('russian');
 
 async function removeCollectionsBySkladId(collection, skladId) {
@@ -29,16 +31,15 @@ async function removeCollectionsBySkladId(collection, skladId) {
 }
 
 function normalizeAndStem(str) {
-  // транслитерация и очистка
   const ascii = transliterate(str)
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')  // убираем акценты
+    .replace(/[\u0300-\u036f]/g, '')  // remove accents
     .replace(/ё/g, 'е')
     .replace(/[ьъ]/g, '')
-    .replace(/[^a-z0-9а-я]/g, '');    // оставляем буквы и цифры
+    .replace(/[^a-z0-9а-я]/g, '');    // keep only letters and numbers
 
-  // стемминг: "джинсы","джинсовая"→"джинс"
+  // stemming: "джинсы","джинсовая"→"джинс"
   return stemmer.stem(ascii);
 }
 
@@ -131,32 +132,32 @@ module.exports = {
       };
     }
   },
-  async skladsProducts(ctx) {
+  async search(ctx) {
     const { _q } = ctx.query;
     if (!_q || typeof _q !== 'string') {
       return [];
     }
 
     try {
-      const sklads = await strapi.query('sklad').find({
+      const sklads = await strapi.query(SKLAD).find({
         _limit: ctx.query._limit || -1,
         _sort: ctx.query._sort || 'name:ASC'
       });
       const result = [];
       for (const sklad of sklads) {
-        const products = await strapi.query('product').find({
+        const products = await strapi.query(PRODUCT).find({
           sklad: sklad.id,
           _limit: -1
         });
 
-        // Разбиваем запрос на термины и нормализуем каждый
+        // Split the query into terms and normalize each term
         const queryTerms = _q
           .trim()
           .split(/\s+/)
           .map(t => normalizeAndStem(t.toLowerCase()));
 
         const fuse = new Fuse(products, {
-          keys: ['name', 'color'],
+          keys: SEARCH_FIELDS,
           threshold: 0.4,
           ignoreLocation: true,
           getFn: (obj, path) => {
@@ -167,14 +168,14 @@ module.exports = {
           }
         });
 
-        // Ищем совпадения для каждого термина
+        // Search for matches for each term
         let fused = [];
         for (const term of queryTerms) {
           const termResults = fuse.search(term).map(r => r.item);
-          // Объединяем результаты - продукт должен содержать хотя бы один термин
+          // Combine results - product must contain at least one term
           fused = [...fused, ...termResults];
         }
-        // Убираем дубликаты по id
+        // Remove duplicates by id
         fused = fused.filter((product, index, self) => 
           index === self.findIndex(p => p.id === product.id)
         );

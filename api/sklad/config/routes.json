@@ -10,8 +10,8 @@
     },
     {
       "method": "GET",
-      "path": "/sklads/sklads-products",
-      "handler": "sklad.skladsProducts",
+      "path": "/sklads/search",
+      "handler": "sklad.search",
       "config": {
         "policies": []
       }
