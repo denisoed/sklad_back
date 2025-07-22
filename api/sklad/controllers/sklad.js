@@ -17,7 +17,7 @@ const ACTIVITY = 'activity'
 const PRODUCT = 'product'
 const SKLAD = 'sklad'
 
-const SEARCH_FIELDS = ['name', 'color'];
+const SEARCH_FIELDS = ['name', 'colorName'];
 
 const stemmer = newStemmer('russian');
 

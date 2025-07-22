@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/22/2025 9:01:25 AM"
+    "x-generation-date": "07/22/2025 4:32:56 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -8152,6 +8152,9 @@
               "typeSize": {
                 "type": "string"
               },
+              "colorName": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -8287,6 +8290,9 @@
                   "type": "component"
                 },
                 "typeSize": {
+                  "type": "string"
+                },
+                "colorName": {
                   "type": "string"
                 },
                 "published_at": {
@@ -9017,6 +9023,9 @@
               "typeSize": {
                 "type": "string"
               },
+              "colorName": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -9691,6 +9700,9 @@
               }
             }
           },
+          "colorName": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -9767,6 +9779,9 @@
             }
           },
           "typeSize": {
+            "type": "string"
+          },
+          "colorName": {
             "type": "string"
           },
           "published_at": {
@@ -9856,6 +9871,9 @@
                 "type": "component"
               },
               "typeSize": {
+                "type": "string"
+              },
+              "colorName": {
                 "type": "string"
               },
               "published_at": {
@@ -10346,6 +10364,9 @@
                 "typeSize": {
                   "type": "string"
                 },
+                "colorName": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -10576,6 +10597,9 @@
                   "type": "component"
                 },
                 "typeSize": {
+                  "type": "string"
+                },
+                "colorName": {
                   "type": "string"
                 },
                 "published_at": {

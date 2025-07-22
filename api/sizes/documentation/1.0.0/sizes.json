@@ -699,6 +699,9 @@
                 "typeSize": {
                   "type": "string"
                 },
+                "colorName": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
