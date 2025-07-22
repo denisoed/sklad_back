@@ -158,7 +158,7 @@ module.exports = {
 
         const fuse = new Fuse(products, {
           keys: SEARCH_FIELDS,
-          threshold: 0.4,
+          threshold: 0.3,
           ignoreLocation: true,
           getFn: (obj, path) => {
             const val = obj[path];
