@@ -137,13 +137,6 @@ module.exports = {
       return [];
     }
 
-    const terms = _q
-      .trim()
-      .split(/\s+/)
-      .map(t => t.toLowerCase());
-
-    const fields = ['name', 'color'];
-
     try {
       const sklads = await strapi.query('sklad').find({
         _limit: ctx.query._limit || -1,
@@ -155,14 +148,13 @@ module.exports = {
           sklad: sklad.id,
           _limit: -1
         });
-        const filteredProducts = products.filter(product => {
-          return fields.some(field => {
-            const value = (product[field] || '').toLowerCase();
-            return terms.some(term => value.includes(term));
-          });
-        });
 
-        const queryNorm = normalizeAndStem(_q);
+        // Разбиваем запрос на термины и нормализуем каждый
+        const queryTerms = _q
+          .trim()
+          .split(/\s+/)
+          .map(t => normalizeAndStem(t.toLowerCase()));
+
         const fuse = new Fuse(products, {
           keys: ['name', 'color'],
           threshold: 0.4,
@@ -174,7 +166,18 @@ module.exports = {
               : '';
           }
         });
-        const fused = fuse.search(queryNorm).map(r => r.item);
+
+        // Ищем совпадения для каждого термина
+        let fused = [];
+        for (const term of queryTerms) {
+          const termResults = fuse.search(term).map(r => r.item);
+          // Объединяем результаты - продукт должен содержать хотя бы один термин
+          fused = [...fused, ...termResults];
+        }
+        // Убираем дубликаты по id
+        fused = fused.filter((product, index, self) => 
+          index === self.findIndex(p => p.id === product.id)
+        );
         if (fused.length > 0) {
           result.push({
             ...sklad,
