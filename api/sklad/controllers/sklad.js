@@ -43,6 +43,37 @@ function normalizeAndStem(str) {
   return stemmer.stem(ascii);
 }
 
+function smartSearch(products, query) {
+  const queryTerms = query
+    .trim()
+    .split(/\s+/)
+    .map(t => normalizeAndStem(t.toLowerCase()));
+
+  const fuse = new Fuse(products, {
+    keys: SEARCH_FIELDS,
+    threshold: 0.3,
+    ignoreLocation: true,
+    getFn: (obj, path) => {
+      const val = obj[path];
+      return typeof val === 'string'
+        ? normalizeAndStem(val)
+        : '';
+    }
+  });
+  // Search for matches for each term
+  let fused = [];
+  for (const term of queryTerms) {
+    const termResults = fuse.search(term).map(r => r.item);
+    // Combine results - product must contain at least one term
+    fused = [...fused, ...termResults];
+  }
+  // Remove duplicates by id
+  fused = fused.filter((product, index, self) => 
+    index === self.findIndex(p => p.id === product.id)
+  );
+  return fused;
+}
+
 module.exports = {
   async removeSklad(ctx) {
     try {
@@ -134,9 +165,6 @@ module.exports = {
   },
   async search(ctx) {
     const { _q } = ctx.query;
-    if (!_q || typeof _q !== 'string') {
-      return [];
-    }
 
     try {
       const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
@@ -148,40 +176,20 @@ module.exports = {
           sklad: sklad.id,
           _limit: -1
         });
+        let list = [];
 
-        // Split the query into terms and normalize each term
-        const queryTerms = _q
-          .trim()
-          .split(/\s+/)
-          .map(t => normalizeAndStem(t.toLowerCase()));
-
-        const fuse = new Fuse(products, {
-          keys: SEARCH_FIELDS,
-          threshold: 0.3,
-          ignoreLocation: true,
-          getFn: (obj, path) => {
-            const val = obj[path];
-            return typeof val === 'string'
-              ? normalizeAndStem(val)
-              : '';
-          }
-        });
-
-        // Search for matches for each term
-        let fused = [];
-        for (const term of queryTerms) {
-          const termResults = fuse.search(term).map(r => r.item);
-          // Combine results - product must contain at least one term
-          fused = [...fused, ...termResults];
+        if (_q && typeof _q === 'string') {
+          list = smartSearch(products, _q);
+        } else {
+          list = products;
         }
-        // Remove duplicates by id
-        fused = fused.filter((product, index, self) => 
-          index === self.findIndex(p => p.id === product.id)
-        );
-        if (fused.length > 0) {
+
+        
+        if (list.length > 0) {
           result.push({
             ...sklad,
-            products: fused
+            categories: [...new Set(list.map(p => p.category))].filter(Boolean),
+            products: list
           });
         }
       }
