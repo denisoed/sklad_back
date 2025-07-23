@@ -11,7 +11,7 @@ module.exports = {
   `,
   query: `
     statisticFinance(where: JSON!): StatisticFinance
-    search(q: String, _limit: Int, _sort: String): [Sklad]
+    search(q: String, where: JSON, _limit: Int, _sort: String): [Sklad]
   `,
   mutation: `
     removeSklad(skladId: ID!): Boolean

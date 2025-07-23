@@ -165,6 +165,7 @@ module.exports = {
   },
   async search(ctx) {
     const { _q } = ctx.query;
+    const queries = ctx.request.query;
 
     try {
       const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
@@ -172,10 +173,15 @@ module.exports = {
 
       const result = [];
       for (const sklad of user.sklads) {
+        const filteredQueries = { ...queries };
+        delete filteredQueries['_q'];
+        
         const products = await strapi.query(PRODUCT).find({
           sklad: sklad.id,
-          _limit: -1
+          _limit: -1,
+          ...filteredQueries
         });
+        
         let list = [];
 
         if (_q && typeof _q === 'string') {
