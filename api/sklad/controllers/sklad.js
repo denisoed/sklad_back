@@ -139,12 +139,11 @@ module.exports = {
     }
 
     try {
-      const sklads = await strapi.query(SKLAD).find({
-        _limit: ctx.query._limit || -1,
-        _sort: ctx.query._sort || 'name:ASC'
-      });
+      const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
+      if (!user) return [];
+
       const result = [];
-      for (const sklad of sklads) {
+      for (const sklad of user.sklads) {
         const products = await strapi.query(PRODUCT).find({
           sklad: sklad.id,
           _limit: -1
