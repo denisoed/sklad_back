@@ -11,7 +11,6 @@ module.exports = {
   `,
   query: `
     statisticFinance(where: JSON!): StatisticFinance
-    search(q: String, where: JSON, sizes: [String], _limit: Int, _sort: String): [Sklad]
   `,
   mutation: `
     removeSklad(skladId: ID!): Boolean
@@ -23,11 +22,6 @@ module.exports = {
         description: 'Get statistic finance',
         resolverOf: 'application::sklad.sklad.find',
         resolver: 'application::sklad.sklad.statisticFinance',
-      },
-      search: {
-        description: 'Search sklad products',
-        resolverOf: 'application::sklad.sklad.find',
-        resolver: 'application::sklad.sklad.search',
       },
     },
     Mutation: {
@@ -42,19 +36,19 @@ module.exports = {
         resolver: 'application::sklad.sklad.bulkUpdateSklads'
       }
     },
-    Sklad: {
-      categories: (obj, options) => {
-        if (obj.categories && Array.isArray(obj.categories)) {
-          return obj.categories;
-        }
-        return strapi.query('category').find({ sklad: obj.id, ...options });
-      },
-      products: (obj, options) => {
-        if (obj.products && Array.isArray(obj.products)) {
-          return obj.products;
-        }
-        return strapi.query('product').find({ sklad: obj.id, ...options });
-      }
-    }
+    // Sklad: {
+    //   categories: (obj, options) => {
+    //     if (obj.categories && Array.isArray(obj.categories)) {
+    //       return obj.categories;
+    //     }
+    //     return strapi.query('category').find({ sklad: obj.id, ...options });
+    //   },
+    //   products: (obj, options) => {
+    //     if (obj.products && Array.isArray(obj.products)) {
+    //       return obj.products;
+    //     }
+    //     return strapi.query('product').find({ sklad: obj.id, ...options });
+    //   }
+    // }
   }
 };
