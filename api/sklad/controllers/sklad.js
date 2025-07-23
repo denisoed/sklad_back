@@ -164,7 +164,7 @@ module.exports = {
     }
   },
   async search(ctx) {
-    const { _q } = ctx.query;
+    const { _q, _sizes } = ctx.query;
     const queries = ctx.request.query;
 
     try {
@@ -175,7 +175,8 @@ module.exports = {
       for (const sklad of user.sklads) {
         const filteredQueries = { ...queries };
         delete filteredQueries['_q'];
-        
+        delete filteredQueries['_sizes'];
+
         const products = await strapi.query(PRODUCT).find({
           sklad: sklad.id,
           _limit: -1,
@@ -190,7 +191,10 @@ module.exports = {
           list = products;
         }
 
-        
+        if (_sizes?.length) {
+          list = list.filter(p => _sizes.some(_s => p.sizes.some(s => s.size === _s)));
+        }
+
         if (list.length > 0) {
           result.push({
             ...sklad,
