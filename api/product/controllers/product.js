@@ -82,7 +82,7 @@ module.exports = {
 
     try {
       const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
-      if (!user) return [];
+      if (!user || !user.sklads?.length) return [];
 
       const filteredQueries = { ...queries };
       delete filteredQueries['_q'];
