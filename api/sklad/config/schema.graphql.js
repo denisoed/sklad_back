@@ -35,20 +35,6 @@ module.exports = {
         resolverOf: 'application::sklad.sklad.update',
         resolver: 'application::sklad.sklad.bulkUpdateSklads'
       }
-    },
-    // Sklad: {
-    //   categories: (obj, options) => {
-    //     if (obj.categories && Array.isArray(obj.categories)) {
-    //       return obj.categories;
-    //     }
-    //     return strapi.query('category').find({ sklad: obj.id, ...options });
-    //   },
-    //   products: (obj, options) => {
-    //     if (obj.products && Array.isArray(obj.products)) {
-    //       return obj.products;
-    //     }
-    //     return strapi.query('product').find({ sklad: obj.id, ...options });
-    //   }
-    // }
+    }
   }
 };
