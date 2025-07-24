@@ -27,4 +27,34 @@ module.exports = {
     const filteredActivities = activities.filter(p => queries.dates.some(d => JSON.stringify(p.created_at).includes(d)));
     return filteredActivities;
   },
+  async statisticActivities(ctx) {
+    const userID = ctx?.state?.user?.id
+    if (!userID) throw new Error('User id is missing!');
+
+    const user = await strapi.query('user', 'users-permissions').findOne({ id: userID });
+    if (!user) return [];
+
+    const activities = await strapi.query(ACTIVITIES).find({ _limit: -1, sklad: user.sklads.map(s => s.id) });
+
+    const origPriceUsed = await activities.reduce((prev, next) => {
+      const countUnits = next.countSizes || next.size?.split(', ')?.length || 1;
+      const sum = prev + (next.origPrice * countUnits)
+      return sum
+    }, 0);
+
+    const newPriceUsed = await activities.reduce((total, activity) => {
+      const discount = activity.percentageDiscount ? ((activity.newPrice / 100) * activity.discount) : activity.discount
+      const countUnits = activity.countSizes || activity.size?.split(', ')?.length || 1
+      const sum = (total + (activity.newPrice * countUnits)) - discount
+      return sum
+    }, 0);
+
+    const totalRevenue = newPriceUsed - origPriceUsed;
+
+    return {
+      origPriceUsed,
+      newPriceUsed,
+      totalRevenue
+    };
+  }
 };

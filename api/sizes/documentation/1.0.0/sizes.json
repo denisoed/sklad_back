@@ -699,6 +699,12 @@
                 "typeSize": {
                   "type": "string"
                 },
+                "colorName": {
+                  "type": "string"
+                },
+                "meta": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },

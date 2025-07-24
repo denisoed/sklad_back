@@ -78,6 +78,12 @@
     "typeSize": {
       "model": "sizes",
       "via": "products"
+    },
+    "colorName": {
+      "type": "string"
+    },
+    "meta": {
+      "type": "text"
     }
   }
 }
