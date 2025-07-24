@@ -36,9 +36,9 @@ module.exports = {
 
     const activities = await strapi.query(ACTIVITIES).find({ _limit: -1, sklad: user.sklads.map(s => s.id) });
 
-    const origPriceUsed = await activities.reduce((prev, next) => {
-      const countUnits = next.countSizes || next.size?.split(', ')?.length || 1;
-      const sum = prev + (next.origPrice * countUnits)
+    const origPriceUsed = await activities.reduce((total, activity) => {
+      const countUnits = activity.countSizes || activity.size?.split(', ')?.length || 1;
+      const sum = total + (activity.origPrice * countUnits)
       return sum
     }, 0);
 
