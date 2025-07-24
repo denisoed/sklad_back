@@ -94,12 +94,12 @@ module.exports = {
       const products = await strapi.query(PRODUCT).find({ _limit: -1, sklad: skladsId, ...filteredQueries });
       if (products?.length) {
         sumAvailableProductsWholesalePrice = await products.reduce((total, product) => {
-          const sizesLength = product.sizes.length || product.countSizes
+          const sizesLength = product.sizes.length || product.countSizes || 1
           const sum = total + (product.origPrice * sizesLength)
           return sum
         }, 0);
         incomeFromAvailableProducts = await products.reduce((total, product) => {
-          const sizesLength = product.sizes.length || product.countSizes
+          const sizesLength = product.sizes.length || product.countSizes || 1
           const sum = total + (product.newPrice * sizesLength)
           return sum
         }, 0);
