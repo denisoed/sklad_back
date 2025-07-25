@@ -943,6 +943,26 @@
           "meta": {
             "type": "string"
           },
+          "prices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1026,6 +1046,26 @@
           },
           "meta": {
             "type": "string"
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                }
+              }
+            }
           },
           "published_at": {
             "type": "string",

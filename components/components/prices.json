@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_components_prices",
+  "info": {
+    "name": "Prices",
+    "icon": "money-bill"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "price": {
+      "type": "integer"
+    }
+  }
+}
