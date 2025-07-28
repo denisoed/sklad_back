@@ -84,6 +84,11 @@
     },
     "meta": {
       "type": "text"
+    },
+    "prices": {
+      "type": "component",
+      "repeatable": true,
+      "component": "components.prices"
     }
   }
 }

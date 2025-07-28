@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/23/2025 9:08:23 PM"
+    "x-generation-date": "07/25/2025 3:35:58 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -8158,6 +8158,9 @@
               "meta": {
                 "type": "string"
               },
+              "prices": {
+                "type": "component"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -8300,6 +8303,9 @@
                 },
                 "meta": {
                   "type": "string"
+                },
+                "prices": {
+                  "type": "component"
                 },
                 "published_at": {
                   "type": "string"
@@ -9035,6 +9041,9 @@
               "meta": {
                 "type": "string"
               },
+              "prices": {
+                "type": "component"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -9715,6 +9724,26 @@
           "meta": {
             "type": "string"
           },
+          "prices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -9798,6 +9827,26 @@
           },
           "meta": {
             "type": "string"
+          },
+          "prices": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                }
+              }
+            }
           },
           "published_at": {
             "type": "string",
@@ -9893,6 +9942,9 @@
               },
               "meta": {
                 "type": "string"
+              },
+              "prices": {
+                "type": "component"
               },
               "published_at": {
                 "type": "string"
@@ -10388,6 +10440,9 @@
                 "meta": {
                   "type": "string"
                 },
+                "prices": {
+                  "type": "component"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -10625,6 +10680,9 @@
                 },
                 "meta": {
                   "type": "string"
+                },
+                "prices": {
+                  "type": "component"
                 },
                 "published_at": {
                   "type": "string"

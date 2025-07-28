@@ -685,6 +685,9 @@
                 "meta": {
                   "type": "string"
                 },
+                "prices": {
+                  "type": "component"
+                },
                 "published_at": {
                   "type": "string"
                 },
