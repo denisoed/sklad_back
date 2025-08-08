@@ -613,6 +613,9 @@
               "prices": {
                 "type": "component"
               },
+              "duplicateFrom": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },

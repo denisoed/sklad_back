@@ -89,6 +89,9 @@
       "type": "component",
       "repeatable": true,
       "component": "components.prices"
+    },
+    "duplicateFrom": {
+      "model": "product"
     }
   }
 }

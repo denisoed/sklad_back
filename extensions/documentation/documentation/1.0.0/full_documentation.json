@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "07/25/2025 3:35:58 PM"
+    "x-generation-date": "08/08/2025 10:12:22 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -8161,6 +8161,9 @@
               "prices": {
                 "type": "component"
               },
+              "duplicateFrom": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -8306,6 +8309,9 @@
                 },
                 "prices": {
                   "type": "component"
+                },
+                "duplicateFrom": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"
@@ -9044,6 +9050,9 @@
               "prices": {
                 "type": "component"
               },
+              "duplicateFrom": {
+                "type": "string"
+              },
               "published_at": {
                 "type": "string"
               },
@@ -9744,6 +9753,91 @@
               }
             }
           },
+          "duplicateFrom": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "origPrice": {
+                "type": "number"
+              },
+              "newPrice": {
+                "type": "number"
+              },
+              "image": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "sklad": {
+                "type": "string"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "discountPrice": {
+                "type": "number"
+              },
+              "discountDays": {
+                "type": "object"
+              },
+              "withDiscount": {
+                "type": "boolean"
+              },
+              "histories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "countSizes": {
+                "type": "integer"
+              },
+              "useNumberOfSizes": {
+                "type": "boolean"
+              },
+              "sizes": {
+                "type": "component"
+              },
+              "typeSize": {
+                "type": "string"
+              },
+              "colorName": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "string"
+              },
+              "prices": {
+                "type": "component"
+              },
+              "duplicateFrom": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -9848,6 +9942,9 @@
               }
             }
           },
+          "duplicateFrom": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -9945,6 +10042,9 @@
               },
               "prices": {
                 "type": "component"
+              },
+              "duplicateFrom": {
+                "type": "string"
               },
               "published_at": {
                 "type": "string"
@@ -10443,6 +10543,9 @@
                 "prices": {
                   "type": "component"
                 },
+                "duplicateFrom": {
+                  "type": "string"
+                },
                 "published_at": {
                   "type": "string"
                 },
@@ -10683,6 +10786,9 @@
                 },
                 "prices": {
                   "type": "component"
+                },
+                "duplicateFrom": {
+                  "type": "string"
                 },
                 "published_at": {
                   "type": "string"

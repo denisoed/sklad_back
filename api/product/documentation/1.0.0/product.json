@@ -963,6 +963,91 @@
               }
             }
           },
+          "duplicateFrom": {
+            "required": [
+              "id"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "origPrice": {
+                "type": "number"
+              },
+              "newPrice": {
+                "type": "number"
+              },
+              "image": {
+                "type": "string"
+              },
+              "color": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "sklad": {
+                "type": "string"
+              },
+              "activities": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "discountPrice": {
+                "type": "number"
+              },
+              "discountDays": {
+                "type": "object"
+              },
+              "withDiscount": {
+                "type": "boolean"
+              },
+              "histories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "countSizes": {
+                "type": "integer"
+              },
+              "useNumberOfSizes": {
+                "type": "boolean"
+              },
+              "sizes": {
+                "type": "component"
+              },
+              "typeSize": {
+                "type": "string"
+              },
+              "colorName": {
+                "type": "string"
+              },
+              "meta": {
+                "type": "string"
+              },
+              "prices": {
+                "type": "component"
+              },
+              "duplicateFrom": {
+                "type": "string"
+              },
+              "published_at": {
+                "type": "string"
+              },
+              "created_by": {
+                "type": "string"
+              },
+              "updated_by": {
+                "type": "string"
+              }
+            }
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -1066,6 +1151,9 @@
                 }
               }
             }
+          },
+          "duplicateFrom": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",
