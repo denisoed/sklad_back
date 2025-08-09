@@ -661,12 +661,6 @@
                 "withDiscount": {
                   "type": "boolean"
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "countSizes": {
                   "type": "integer"
                 },
@@ -690,43 +684,6 @@
                 },
                 "duplicateFrom": {
                   "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "histories": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "action": {
-                  "type": "string"
-                },
-                "users_permissions_user": {
-                  "type": "string"
-                },
-                "sklad": {
-                  "type": "string"
-                },
-                "product": {
-                  "type": "string"
-                },
-                "json": {
-                  "type": "object"
                 },
                 "published_at": {
                   "type": "string"
@@ -1038,12 +995,6 @@
             }
           },
           "products": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "histories": {
             "type": "array",
             "items": {
               "type": "string"

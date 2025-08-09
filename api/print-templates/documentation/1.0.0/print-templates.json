@@ -566,12 +566,6 @@
                     "type": "string"
                   }
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "sizes": {
                   "type": "object"
                 },

@@ -681,12 +681,6 @@
                 "withDiscount": {
                   "type": "boolean"
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "countSizes": {
                   "type": "integer"
                 },

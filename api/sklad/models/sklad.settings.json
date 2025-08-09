@@ -25,10 +25,6 @@
       "via": "sklad",
       "collection": "product"
     },
-    "histories": {
-      "via": "sklad",
-      "collection": "history"
-    },
     "sizes": {
       "type": "json"
     },

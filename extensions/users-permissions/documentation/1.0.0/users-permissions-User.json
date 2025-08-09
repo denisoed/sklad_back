@@ -1353,12 +1353,6 @@
                     "type": "string"
                   }
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "sizes": {
                   "type": "object"
                 },
@@ -1445,12 +1439,6 @@
                       }
                     },
                     "products": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "histories": {
                       "type": "array",
                       "items": {
                         "type": "string"
@@ -1646,12 +1634,6 @@
                   "type": "string"
                 }
               },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "sizes": {
                 "type": "object"
               },
@@ -1798,12 +1780,6 @@
                       }
                     },
                     "products": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "histories": {
                       "type": "array",
                       "items": {
                         "type": "string"
