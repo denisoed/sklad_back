@@ -13,11 +13,11 @@ const ACTIVITY = 'activity'
 const PRODUCT = 'product'
 const SKLAD = 'sklad'
 
-async function removeCollectionsBySkladId(collection, skladId) {
-  const collections = await strapi.query(collection).find({ _limit: -1, sklad: skladId });
+async function removeCollectionsBySkladId(collection, skladId, filterField = 'sklad') {
+  const collections = await strapi.query(collection).find({ _limit: -1, [filterField]: skladId });
   if (collections?.length) {
     for (const c of collections) {
-      strapi.query(collection).delete({ id: c?.id })
+      await strapi.query(collection).delete({ id: c?.id })
     }
   }
 }
@@ -27,20 +27,22 @@ module.exports = {
     try {
       const { skladId } = ctx.request.body;
       if (!skladId) return false;
-      Promise.all([
+      await Promise.all([
         removeCollectionsBySkladId(CATEGORY, skladId),
         removeCollectionsBySkladId(COSTS, skladId),
         removeCollectionsBySkladId(SALE_PRODUCT, skladId),
-        removeCollectionsBySkladId(HISTORIES, skladId),
+        removeCollectionsBySkladId(HISTORIES, skladId, 'skladId'),
         removeCollectionsBySkladId(ACTIVITY, skladId),
       ])
       const products = await strapi.query(PRODUCT).find({ _limit: -1, sklad: skladId });
       if (products?.length) {
         for (const p of products) {
-          Promise.all([
-            strapi.query('file', 'upload').delete({ id: p?.image?.id }),
-            strapi.query(PRODUCT).delete({ id: p?.id })
-          ])
+          const deletions = []
+          if (p?.image?.id) {
+            deletions.push(strapi.query('file', 'upload').delete({ id: p.image.id }))
+          }
+          deletions.push(strapi.query(PRODUCT).delete({ id: p?.id }))
+          await Promise.all(deletions)
         }
       }
       const sklad = await strapi.query(SKLAD).findOne({ _limit: -1, id: skladId });
