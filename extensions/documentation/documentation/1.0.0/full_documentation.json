@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/08/2025 10:12:22 PM"
+    "x-generation-date": "08/09/2025 11:19:47 AM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -8025,12 +8025,6 @@
                   "type": "string"
                 }
               },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "sizes": {
                 "type": "object"
               },
@@ -8133,12 +8127,6 @@
               },
               "withDiscount": {
                 "type": "boolean"
-              },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
               },
               "countSizes": {
                 "type": "integer"
@@ -8283,12 +8271,6 @@
                 "withDiscount": {
                   "type": "boolean"
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "countSizes": {
                   "type": "integer"
                 },
@@ -8343,12 +8325,6 @@
                 }
               },
               "products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "histories": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -8567,12 +8543,6 @@
                 }
               },
               "products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "histories": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -8807,265 +8777,29 @@
           "action": {
             "type": "string"
           },
-          "users_permissions_user": {
-            "required": [
-              "id",
-              "username",
-              "email"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "username": {
-                "type": "string"
-              },
-              "email": {
-                "type": "string"
-              },
-              "provider": {
-                "type": "string"
-              },
-              "password": {
-                "type": "string"
-              },
-              "resetPasswordToken": {
-                "type": "string"
-              },
-              "confirmationToken": {
-                "type": "string"
-              },
-              "confirmed": {
-                "type": "boolean"
-              },
-              "blocked": {
-                "type": "boolean"
-              },
-              "role": {
-                "type": "string"
-              },
-              "fullname": {
-                "type": "string"
-              },
-              "bio": {
-                "type": "string"
-              },
-              "avatar": {
-                "type": "string"
-              },
-              "tokenVersion": {
-                "type": "integer"
-              },
-              "expiredAt": {
-                "type": "string"
-              },
-              "sklads": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "permissions": {
-                "type": "component"
-              },
-              "onboarded": {
-                "type": "boolean"
-              },
-              "sizes": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "sale_product": {
-                "type": "string"
-              },
-              "telegramId": {
-                "type": "integer"
-              },
-              "sklad": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "sklad": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "users": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "sizes": {
-                "type": "object"
-              },
-              "costs": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "color": {
-                "type": "string"
-              },
-              "minSizes": {
-                "type": "integer"
-              },
-              "useMinSizes": {
-                "type": "boolean"
-              },
-              "print_template": {
-                "type": "string"
-              },
-              "goal": {
-                "type": "integer"
-              },
-              "useNumberOfSizes": {
-                "type": "boolean"
-              },
-              "order": {
-                "type": "integer"
-              },
-              "sale_products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "categories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "owner": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
-          "product": {
-            "required": [
-              "id"
-            ],
-            "properties": {
-              "id": {
-                "type": "string"
-              },
-              "name": {
-                "type": "string"
-              },
-              "origPrice": {
-                "type": "number"
-              },
-              "newPrice": {
-                "type": "number"
-              },
-              "image": {
-                "type": "string"
-              },
-              "color": {
-                "type": "string"
-              },
-              "category": {
-                "type": "string"
-              },
-              "sklad": {
-                "type": "string"
-              },
-              "activities": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "discountPrice": {
-                "type": "number"
-              },
-              "discountDays": {
-                "type": "object"
-              },
-              "withDiscount": {
-                "type": "boolean"
-              },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "countSizes": {
-                "type": "integer"
-              },
-              "useNumberOfSizes": {
-                "type": "boolean"
-              },
-              "sizes": {
-                "type": "component"
-              },
-              "typeSize": {
-                "type": "string"
-              },
-              "colorName": {
-                "type": "string"
-              },
-              "meta": {
-                "type": "string"
-              },
-              "prices": {
-                "type": "component"
-              },
-              "duplicateFrom": {
-                "type": "string"
-              },
-              "published_at": {
-                "type": "string"
-              },
-              "created_by": {
-                "type": "string"
-              },
-              "updated_by": {
-                "type": "string"
-              }
-            }
-          },
           "json": {
             "type": "object"
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telegramId": {
+            "type": "integer"
+          },
+          "skladName": {
+            "type": "string"
+          },
+          "skladId": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "productId": {
+            "type": "integer"
           },
           "published_at": {
             "type": "string",
@@ -9078,17 +8812,29 @@
           "action": {
             "type": "string"
           },
-          "users_permissions_user": {
-            "type": "string"
-          },
-          "sklad": {
-            "type": "string"
-          },
-          "product": {
-            "type": "string"
-          },
           "json": {
             "type": "object"
+          },
+          "fullname": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "telegramId": {
+            "type": "integer"
+          },
+          "skladName": {
+            "type": "string"
+          },
+          "skladId": {
+            "type": "integer"
+          },
+          "userId": {
+            "type": "integer"
+          },
+          "productId": {
+            "type": "integer"
           },
           "published_at": {
             "type": "string",
@@ -9249,12 +8995,6 @@
                   }
                 },
                 "products": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "histories": {
                   "type": "array",
                   "items": {
                     "type": "string"
@@ -9505,12 +9245,6 @@
                   "type": "string"
                 }
               },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "sizes": {
                 "type": "object"
               },
@@ -9625,43 +9359,6 @@
           "withDiscount": {
             "type": "boolean",
             "default": false
-          },
-          "histories": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "action": {
-                  "type": "string"
-                },
-                "users_permissions_user": {
-                  "type": "string"
-                },
-                "sklad": {
-                  "type": "string"
-                },
-                "product": {
-                  "type": "string"
-                },
-                "json": {
-                  "type": "object"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
           },
           "countSizes": {
             "type": "integer",
@@ -9797,12 +9494,6 @@
               "withDiscount": {
                 "type": "boolean"
               },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "countSizes": {
                 "type": "integer"
               },
@@ -9879,12 +9570,6 @@
           "withDiscount": {
             "type": "boolean",
             "default": false
-          },
-          "histories": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
           },
           "countSizes": {
             "type": "integer",
@@ -10015,12 +9700,6 @@
               },
               "withDiscount": {
                 "type": "boolean"
-              },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
               },
               "countSizes": {
                 "type": "integer"
@@ -10189,12 +9868,6 @@
                 }
               },
               "products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "histories": {
                 "type": "array",
                 "items": {
                   "type": "string"
@@ -10516,12 +10189,6 @@
                 "withDiscount": {
                   "type": "boolean"
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "countSizes": {
                   "type": "integer"
                 },
@@ -10760,12 +10427,6 @@
                 "withDiscount": {
                   "type": "boolean"
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "countSizes": {
                   "type": "integer"
                 },
@@ -10789,43 +10450,6 @@
                 },
                 "duplicateFrom": {
                   "type": "string"
-                },
-                "published_at": {
-                  "type": "string"
-                },
-                "created_by": {
-                  "type": "string"
-                },
-                "updated_by": {
-                  "type": "string"
-                }
-              }
-            }
-          },
-          "histories": {
-            "type": "array",
-            "items": {
-              "required": [
-                "id"
-              ],
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "action": {
-                  "type": "string"
-                },
-                "users_permissions_user": {
-                  "type": "string"
-                },
-                "sklad": {
-                  "type": "string"
-                },
-                "product": {
-                  "type": "string"
-                },
-                "json": {
-                  "type": "object"
                 },
                 "published_at": {
                   "type": "string"
@@ -11137,12 +10761,6 @@
             }
           },
           "products": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "histories": {
             "type": "array",
             "items": {
               "type": "string"
@@ -11564,12 +11182,6 @@
                     "type": "string"
                   }
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "sizes": {
                   "type": "object"
                 },
@@ -11656,12 +11268,6 @@
                       }
                     },
                     "products": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "histories": {
                       "type": "array",
                       "items": {
                         "type": "string"
@@ -11857,12 +11463,6 @@
                   "type": "string"
                 }
               },
-              "histories": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "sizes": {
                 "type": "object"
               },
@@ -12009,12 +11609,6 @@
                       }
                     },
                     "products": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "histories": {
                       "type": "array",
                       "items": {
                         "type": "string"

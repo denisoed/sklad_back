@@ -15,20 +15,29 @@
     "action": {
       "type": "string"
     },
-    "users_permissions_user": {
-      "plugin": "users-permissions",
-      "model": "user"
-    },
-    "sklad": {
-      "via": "histories",
-      "model": "sklad"
-    },
-    "product": {
-      "via": "histories",
-      "model": "product"
-    },
     "json": {
       "type": "json"
+    },
+    "fullname": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "telegramId": {
+      "type": "integer"
+    },
+    "skladName": {
+      "type": "string"
+    },
+    "skladId": {
+      "type": "integer"
+    },
+    "userId": {
+      "type": "integer"
+    },
+    "productId": {
+      "type": "integer"
     }
   }
 }

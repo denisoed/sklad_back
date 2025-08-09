@@ -24,7 +24,7 @@ module.exports = {
       .find({
         _limit: queries._limit,
         _start: queries._start,
-        sklad: skladsId,
+        skladId_in: skladsId,
         ...filteredQueries
       });
     if (!queries?.dates?.length) return histories;

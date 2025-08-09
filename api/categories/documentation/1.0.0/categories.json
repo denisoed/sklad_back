@@ -571,12 +571,6 @@
                 "withDiscount": {
                   "type": "boolean"
                 },
-                "histories": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "countSizes": {
                   "type": "integer"
                 },
@@ -631,12 +625,6 @@
                 }
               },
               "products": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "histories": {
                 "type": "array",
                 "items": {
                   "type": "string"

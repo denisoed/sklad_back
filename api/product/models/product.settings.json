@@ -58,10 +58,6 @@
       "type": "boolean",
       "default": false
     },
-    "histories": {
-      "via": "product",
-      "collection": "history"
-    },
     "countSizes": {
       "type": "integer",
       "default": 0,
