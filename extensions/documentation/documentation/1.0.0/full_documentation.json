@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "08/09/2025 11:19:47 AM"
+    "x-generation-date": "08/11/2025 4:27:30 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -8517,6 +8517,9 @@
               "sklad": {
                 "type": "string"
               },
+              "telegramAvatar": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -8727,6 +8730,9 @@
                 "type": "integer"
               },
               "sklad": {
+                "type": "string"
+              },
+              "telegramAvatar": {
                 "type": "string"
               },
               "created_by": {
@@ -9841,6 +9847,9 @@
                 "sklad": {
                   "type": "string"
                 },
+                "telegramAvatar": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -10134,6 +10143,9 @@
                 "sklad": {
                   "type": "string"
                 },
+                "telegramAvatar": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -10370,6 +10382,9 @@
                   "type": "integer"
                 },
                 "sklad": {
+                  "type": "string"
+                },
+                "telegramAvatar": {
                   "type": "string"
                 },
                 "created_by": {
@@ -10735,6 +10750,9 @@
               "sklad": {
                 "type": "string"
               },
+              "telegramAvatar": {
+                "type": "string"
+              },
               "created_by": {
                 "type": "string"
               },
@@ -10965,6 +10983,9 @@
                   "type": "integer"
                 },
                 "sklad": {
+                  "type": "string"
+                },
+                "telegramAvatar": {
                   "type": "string"
                 },
                 "created_by": {
@@ -11518,6 +11539,9 @@
                 "type": "string"
               }
             }
+          },
+          "telegramAvatar": {
+            "type": "string"
           }
         }
       },
@@ -11693,6 +11717,9 @@
             "type": "integer"
           },
           "sklad": {
+            "type": "string"
+          },
+          "telegramAvatar": {
             "type": "string"
           },
           "created_by": {

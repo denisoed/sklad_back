@@ -113,6 +113,9 @@
     "sklad": {
       "via": "owner",
       "model": "sklad"
+    },
+    "telegramAvatar": {
+      "type": "string"
     }
   }
 }

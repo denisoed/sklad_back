@@ -883,6 +883,7 @@ module.exports = {
     params.role = role.id;
     params.telegramId = tgUser.id;
     params.username = tgUser.id;
+    params.telegramAvatar = tgUser.photo_url;
     params.fullname = createUsername(tgUser);
     params.email = "";
     params.confirmed = true;
