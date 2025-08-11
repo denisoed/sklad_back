@@ -11,7 +11,7 @@ const crypto = require("crypto");
 const _ = require("lodash");
 const grant = require("grant-koa");
 const { sanitizeEntity } = require("strapi-utils");
-const { validateInitDataUnsafe, validateWebTgAuthData } = require("./helpers");
+const { validateInitDataUnsafe, validateWebTgAuthData, parseInitData } = require("./helpers");
 
 const emailRegExp =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -31,8 +31,9 @@ const generateRefreshToken = (user) => {
   );
 }
 
-function getTgUser(data, mode) {
-  if (mode === "tg") return data.user;
+function getTgUser(initData, mode) {
+  const parsedData = parseInitData(initData);
+  if (mode === "tg") return parsedData.data.user;
   return data;
 }
 
@@ -855,9 +856,9 @@ module.exports = {
       );
     }
     
-    const initData = JSON.parse(params?.initData);
+    // const initData = JSON.parse(params?.initData);
 
-    if (!verifyWebTgAuthData(initData, params.mode)) {
+    if (!verifyWebTgAuthData(params?.initData, params.mode)) {
       return ctx.badRequest(
         null,
         formatError({
@@ -867,7 +868,7 @@ module.exports = {
       );
     }
 
-    const tgUser = getTgUser(initData, params.mode);
+    const tgUser = getTgUser(params?.initData, params.mode);
 
     // fetch user based on subject
     const user = await strapi
