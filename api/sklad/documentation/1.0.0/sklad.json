@@ -606,6 +606,9 @@
                 "sklad": {
                   "type": "string"
                 },
+                "telegramAvatar": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },
@@ -967,6 +970,9 @@
                 "type": "integer"
               },
               "sklad": {
+                "type": "string"
+              },
+              "telegramAvatar": {
                 "type": "string"
               },
               "created_by": {

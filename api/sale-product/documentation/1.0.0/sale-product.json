@@ -726,6 +726,9 @@
                 "sklad": {
                   "type": "string"
                 },
+                "telegramAvatar": {
+                  "type": "string"
+                },
                 "created_by": {
                   "type": "string"
                 },

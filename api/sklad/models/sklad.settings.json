@@ -66,9 +66,9 @@
       "collection": "categories"
     },
     "owner": {
+      "via": "sklad",
       "plugin": "users-permissions",
-      "model": "user",
-      "via": "sklad"
+      "model": "user"
     }
   }
 }
