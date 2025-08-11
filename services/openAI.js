@@ -134,7 +134,7 @@ async function generateResponse(prompt, options = {}) {
  * @returns {Promise<string>} - The generated response
  */
 async function generateResponseGPT4(prompt, options = {}) {
-  return generateResponse(prompt, { ...options, model: 'gpt-4' });
+  return generateResponse(prompt, { ...options, model: 'gpt-4o-mini' });
 }
 
 /**

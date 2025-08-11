@@ -8,11 +8,59 @@
 const Fuse = require('fuse.js');
 const { transliterate } = require('transliteration');
 const { newStemmer } = require('snowball-stemmers');
+const { generateResponse } = require('../../../services/openAI');
 
 const PRODUCTS = 'product'
 const SEARCH_FIELDS = ['meta'];
 
 const stemmer = newStemmer('russian');
+
+const createProductPrompt = (q, userSklads = [], userCategories = [], userSizes = []) => `You are a JSON parser. 
+Your ONLY output must be valid JSON between <JSON> and </JSON> tags.
+Never add comments, explanations, or text outside JSON.
+
+Schema:
+{
+  "name": string | null,
+  "quantity": number | null,
+  "sizes": { id: string, size: string }[],
+  "color": string | null,
+  "wholesalePrice": number | null,
+  "retailPrice": number | null,
+  "sklad": { id: string, name: string } | null,
+  "category": { id: string, name: string } | null
+}
+
+Available user data for matching:
+Warehouses: ${JSON.stringify(userSklads)}
+Categories: ${JSON.stringify(userCategories)}
+Sizes: ${JSON.stringify(userSizes)}
+
+When parsing:
+- Match warehouse names to the available warehouses list above
+- Match category names to the available categories list above  
+- Match size values to the available sizes list above
+- Use the exact id and name from the lists when found
+- If no match found in lists, use null
+
+Example:
+Input: джинсовая куртка размер xl xxl черная 3 штуки оптовая цена 1000 розничная 1200 склад Куртки категория джинсы
+Output:
+<JSON>
+{
+  "name": "джинсовая куртка",
+  "quantity": 3,
+  "sizes": [{ id: "1", size: "XL" }, { id: "2", size: "XXL" }],
+  "color": "черная",
+  "wholesalePrice": 1000,
+  "retailPrice": 1200,
+  "sklad": { id: "1", name: "Куртки" },
+  "category": { id: "1", name: "джинсы" }
+}
+</JSON>
+
+Now parse this text:
+${q}`;
 
 function normalizeAndStem(str) {
   const ascii = transliterate(str)
@@ -59,6 +107,24 @@ function smartSearch(products, query) {
 }
 
 module.exports = {
+  async prepareNewProduct(ctx) {
+    const { _q } = ctx.query;
+    try {
+      const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
+      const userSklads = user.sklads.map(s => ({ id: s.id, name: s.name }));
+      const userCategories = await strapi.query('categories').find({ _limit: -1, sklad: userSklads.map(s => s.id) });
+      const userCategoriesMap = userCategories.map(c => ({ id: c.id, name: c.name }));
+      const userSizes = user.sizes.map(s => ({ id: s.id, size: s.size, list: s.list }));
+      const response = await generateResponse(createProductPrompt(_q, userSklads, userCategoriesMap, userSizes));
+      const jsonMatch = response.match(/<JSON>([\s\S]*?)<\/JSON>/);
+      const json = jsonMatch ? jsonMatch[1].trim() : response;
+      const parsedResult = JSON.parse(json);
+      return parsedResult;
+    } catch (err) {
+      console.error(err);
+      return { error: err.message };
+    }
+  },
   async productsWithMinSizes(ctx) {
     const queries = ctx.request.query;
     const user = await strapi.query('user', 'users-permissions').findOne({ id: ctx.state.user.id });
