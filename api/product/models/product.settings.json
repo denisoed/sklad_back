@@ -72,8 +72,8 @@
       "component": "components.size"
     },
     "typeSize": {
-      "model": "sizes",
-      "via": "products"
+      "via": "products",
+      "model": "sizes"
     },
     "colorName": {
       "type": "string"

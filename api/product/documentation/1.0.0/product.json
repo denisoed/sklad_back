@@ -760,6 +760,12 @@
               "owner": {
                 "type": "string"
               },
+              "size": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "published_at": {
                 "type": "string"
               },
@@ -871,13 +877,13 @@
               "name": {
                 "type": "string"
               },
-              "users_permissions_users": {
+              "products": {
                 "type": "array",
                 "items": {
                   "type": "string"
                 }
               },
-              "products": {
+              "sklads": {
                 "type": "array",
                 "items": {
                   "type": "string"

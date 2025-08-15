@@ -592,12 +592,6 @@
               "onboarded": {
                 "type": "boolean"
               },
-              "sizes": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "sale_product": {
                 "type": "string"
               },
@@ -685,6 +679,12 @@
               },
               "owner": {
                 "type": "string"
+              },
+              "size": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
               },
               "published_at": {
                 "type": "string"
