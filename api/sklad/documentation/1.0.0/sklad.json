@@ -591,12 +591,6 @@
                 "onboarded": {
                   "type": "boolean"
                 },
-                "sizes": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "sale_product": {
                   "type": "string"
                 },
@@ -957,12 +951,6 @@
               "onboarded": {
                 "type": "boolean"
               },
-              "sizes": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
               "sale_product": {
                 "type": "string"
               },
@@ -980,6 +968,46 @@
               },
               "updated_by": {
                 "type": "string"
+              }
+            }
+          },
+          "size": {
+            "type": "array",
+            "items": {
+              "required": [
+                "id"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "list": {
+                  "type": "component"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "products": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "sklads": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "published_at": {
+                  "type": "string"
+                },
+                "created_by": {
+                  "type": "string"
+                },
+                "updated_by": {
+                  "type": "string"
+                }
               }
             }
           },
@@ -1053,6 +1081,12 @@
           },
           "owner": {
             "type": "string"
+          },
+          "size": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "published_at": {
             "type": "string",

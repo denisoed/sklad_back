@@ -588,12 +588,6 @@
                 "onboarded": {
                   "type": "boolean"
                 },
-                "sizes": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
                 "sale_product": {
                   "type": "string"
                 },

@@ -20,15 +20,14 @@
     "name": {
       "type": "string"
     },
-    "users_permissions_users": {
-      "via": "sizes",
-      "plugin": "users-permissions",
-      "collection": "user",
-      "dominant": true
-    },
     "products": {
       "via": "typeSize",
       "collection": "product"
+    },
+    "sklads": {
+      "collection": "sklad",
+      "via": "size",
+      "dominant": true
     }
   }
 }

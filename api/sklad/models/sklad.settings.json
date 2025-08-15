@@ -69,6 +69,10 @@
       "via": "sklad",
       "plugin": "users-permissions",
       "model": "user"
+    },
+    "size": {
+      "via": "sklads",
+      "collection": "sizes"
     }
   }
 }
