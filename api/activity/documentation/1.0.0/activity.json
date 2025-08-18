@@ -708,6 +708,12 @@
           "countSizes": {
             "type": "integer"
           },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -743,6 +749,12 @@
           },
           "countSizes": {
             "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

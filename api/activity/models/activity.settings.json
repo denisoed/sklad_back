@@ -40,6 +40,12 @@
     },
     "countSizes": {
       "type": "integer"
+    },
+    "type": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
